@@ -1,0 +1,50 @@
+---
+dataset:
+  path: '/home/na462/Dokumente/Datasets/dogs-vs-cats'
+  train_size: 0.8
+  size_x: 224
+  size_y: 224
+  classes: 2
+  channel: 3
+  path_image: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/dataset.png'
+  predict_image: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/prediction.png'
+train:
+  optimizer: NADAM       # Possible values: ADAM,NADAM,SGD,SGD_MOMENTUM,RMS_PROP,ADA_GRAD
+  learning_rate: 0.001
+  batch_size: 32
+  use_multiprocessing: True
+  num_workers: -1
+  epochs: 1
+  weight_initialization:
+    use_pretrained: False
+    restore_from: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/last.h5'
+  output_weight: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/final.h5'
+network:
+  graph_path: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/graph.json'
+  model_img: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/model.png'
+data_aug:
+  use_aug: False
+callbacks:
+  earlystopping:
+    use_early_stop: True
+    patience: 10
+    monitor: 'val_loss'
+  checkpoint:
+    checkpoint_last:
+      enabled: True
+      monitor: 'val_loss'
+      out_last: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/last.h5'
+    checkpoint_best:
+      enabled: True
+      monitor: 'val_loss'
+      out_last: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/best.h5'
+  tensorboard:
+    enabled: True
+    log_dir: '/home/na462/Dokumente/Projekt und Codes/DogsVsCat/Generated/logs'
+  scheduler:
+    onecycle:
+      to_use : True
+      max_rate: 0.05
+    exponential_scheduler:
+      to_use : False
+      params: 10
