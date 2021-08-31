@@ -1,5 +1,8 @@
 # DogsVsCat
  Image classification on famous DogVsCat dataset.
+ 
+ I suggest to read my Kaggle blog to walk through the entire code https://www.kaggle.com/gopalbhattrai/dogvscat-cnn-tensorflow-keras-generator-augment
+
  ![dataset](https://user-images.githubusercontent.com/51056214/131360401-03ff9c24-a589-4113-93e0-d37037d20692.png)
 
  
@@ -13,4 +16,3 @@
  
   * I will be using the DogvsCat famous repository to do binary classification using Vanilla CNN to achieve around 95% of accuracy.
 
-I suggest to read my Kaggle blog to walk through the entire code https://www.kaggle.com/gopalbhattrai/dogvscat-cnn-data-generator-95/edit
