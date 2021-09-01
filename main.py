@@ -89,11 +89,10 @@ train_loader = Datagenerator(config_file, train, shuffle=True)
 val_loader = Datagenerator(config_file, val, shuffle=True)
 
 baseline_model = Models(config=config_file).convolution_scratch(save_model=True)
-trainer = trainer.Trainer(config=config_file, model=baseline_model, train_loader=train_loader, val_loader=val_loader)
+trainer = trainer.Trainer(config=config_file, trainsize=len(train), model=baseline_model, train_loader=train_loader, val_loader=val_loader)
 trainer.train()
 
 # Prediction
 predict = predictor.Predictor(config_file, test)
 class_predict = predict.predict()
 show_some_image_prediction(test, class_predict, path_to_save=config_file['dataset']['predict_image'])
-

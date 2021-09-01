@@ -1,3 +1,4 @@
+import numpy as np
 import tensorflow as tf
 import os
 
@@ -68,13 +69,14 @@ class Result_callback(tf.keras.callbacks.Callback):
 
 
 class Trainer:
-    def __init__(self, config, model, train_loader, val_loader):
+    def __init__(self, config, trainsize, model, train_loader, val_loader):
         self.config = config
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.model = model
         self.batch_size = self.config['train']['batch_size']
         self.epochs = self.config['train']['epochs']
+        self.train_size = trainsize
         self.results = Result_callback()
         self.callbacks = self.get_callbacks().append(self.results)
 
@@ -116,7 +118,7 @@ class Trainer:
             callbacks.append(board)
 
         if self.config['callbacks']['scheduler']['onecycle']['to_use']:
-            iterations = self.epochs * self.batch_size
+            iterations = np.ceil(self.train_size/self.batch_size) * self.epochs
             max_rate = self.config['callbacks']['scheduler']['onecycle']['max_rate']
             one_cycle_callback = one_cycle(iterations=iterations, max_rate=max_rate)
             callbacks.append(one_cycle_callback)
