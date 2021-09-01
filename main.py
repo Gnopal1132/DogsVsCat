@@ -83,7 +83,7 @@ train_size = int(len(data)*config_file["dataset"]["train_size"])
 train = data[:train_size]
 val = data[train_size:]
 test = read_dataset(test_path, shuffle=False)
-#show_some_images(train, config_file['dataset']['path_image'])  #To see some dataset images
+show_some_images(train, config_file['dataset']['path_image'])  #To see some dataset images
 
 train_loader = Datagenerator(config_file, train, shuffle=True)
 val_loader = Datagenerator(config_file, val, shuffle=True)
